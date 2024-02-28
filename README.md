@@ -1,62 +1,53 @@
-# Project Title
+# Game of Life
 
-Simple overview of use/purpose.
+This exercise was given as a hands-on example in the online course "Software Design with Unit Tests"
+by [Dr. Venkat Subramaniam](03), [O'Reilly Media](01). 
 
-## Description
 
-An in-depth paragraph about your project and overview of use.
+## Rules
 
-## Getting Started
+The universe of the Game of Life is an infinite, two-dimensional orthogonal grid of square cells, 
+each of which is in one of two possible states, live or dead (or populated and unpopulated, respectively). 
+Every cell interacts with its eight neighbors, which are the cells that are horizontally, vertically, 
+or diagonally adjacent. At each step in time, the following transitions occur:
 
-### Dependencies
+1. Any live cell with fewer than two live neighbors dies, as if by underpopulation.
+2. Any live cell with two or three live neighbors lives on to the next generation.
+3. Any live cell with more than three live neighbors dies, as if by overpopulation.
+4. Any dead cell with exactly three live neighbors becomes a live cell, as if by reproduction.
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+The initial pattern constitutes the seed of the system. The first generation is created by applying the above rules simultaneously to every cell in the seed, live or dead; births and deaths occur simultaneously, and the discrete moment at which this happens is sometimes called a tick.[nb 1] Each generation is a pure function of the preceding one. The rules continue to be applied repeatedly to create further generations.
 
-### Installing
+Retrieved from: [Wikipedia: Conway's Game of Life](02)
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+## System Requirements
+* Java 17 or higher
+* Maven 3.8.x or higher
 
-### Executing program
+## Executing program
 
-* How to run the program
-* Step-by-step bullets
 ```
-code blocks for commands
-```
-
-## Help
-
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
+mvn clean test
 ```
 
-## Authors
+## Branches
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
+* **imperative-limited**
+    * imperative style 
+    * limited universe, that means, the max dimensions of the universe are defined at startup and can not change at runtime
+* **imperative-unlimited**
+    * imperative style
+    * unlimited universe
+* **main**
+    * functional style
+    * unlimited universe
 
 ## License
 
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
+GNU General Public License, Version 3, 29 June 2007
 
-## Acknowledgments
 
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+
+[01]: https://www.oreilly.com/online-learning/
+[02]: https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+[03]: https://agiledeveloper.com/aboutus.html
