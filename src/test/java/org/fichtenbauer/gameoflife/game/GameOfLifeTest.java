@@ -50,9 +50,13 @@ public class GameOfLifeTest {
       () -> assertEquals(DEAD, nextState(DEAD, 0)),
       () -> assertEquals(DEAD, nextState(DEAD, 1)),
       () -> assertEquals(DEAD, nextState(DEAD, 2)),
+      () -> assertEquals(ALIVE, nextState(DEAD, 3)),
+      () -> assertEquals(DEAD, nextState(DEAD, 4)),
       () -> assertEquals(DEAD, nextState(DEAD, 5)),
-      () -> assertEquals(DEAD, nextState(DEAD, 8)),
-      () -> assertEquals(ALIVE, nextState(DEAD, 3))
+      () -> assertEquals(DEAD, nextState(DEAD, 6)),
+      () -> assertEquals(DEAD, nextState(DEAD, 7)),
+      () -> assertEquals(DEAD, nextState(DEAD, 8))
+
     );
   }
 
@@ -61,10 +65,13 @@ public class GameOfLifeTest {
     assertAll(
       () -> assertEquals(DEAD, nextState(ALIVE, 0)),
       () -> assertEquals(DEAD, nextState(ALIVE, 1)),
-      () -> assertEquals(DEAD, nextState(ALIVE, 5)),
-      () -> assertEquals(DEAD, nextState(ALIVE, 8)),
       () -> assertEquals(ALIVE, nextState(ALIVE, 2)),
-      () -> assertEquals(ALIVE, nextState(ALIVE, 3))
+      () -> assertEquals(ALIVE, nextState(ALIVE, 3)),
+      () -> assertEquals(DEAD, nextState(ALIVE, 4)),
+      () -> assertEquals(DEAD, nextState(ALIVE, 5)),
+      () -> assertEquals(DEAD, nextState(ALIVE, 6)),
+      () -> assertEquals(DEAD, nextState(ALIVE, 7)),
+      () -> assertEquals(DEAD, nextState(ALIVE, 8))
     );
   }
 
