@@ -1,3 +1,4 @@
 org/fichtenbauer/gameoflife/game/GameOfLife.class
-org/fichtenbauer/gameoflife/game/GameOfLife$CellState.class
+org/fichtenbauer/gameoflife/game/Cell.class
 org/fichtenbauer/gameoflife/ui/GameDriver.class
+org/fichtenbauer/gameoflife/game/CellState.class

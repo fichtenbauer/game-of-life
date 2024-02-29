@@ -1,2 +1,4 @@
+/home/tom/Projekte/github/game-of-life/src/main/java/org/fichtenbauer/gameoflife/game/Cell.java
 /home/tom/Projekte/github/game-of-life/src/main/java/org/fichtenbauer/gameoflife/game/GameOfLife.java
+/home/tom/Projekte/github/game-of-life/src/main/java/org/fichtenbauer/gameoflife/game/CellState.java
 /home/tom/Projekte/github/game-of-life/src/main/java/org/fichtenbauer/gameoflife/ui/GameDriver.java
