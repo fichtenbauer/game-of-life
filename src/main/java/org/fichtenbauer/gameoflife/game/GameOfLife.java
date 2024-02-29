@@ -2,7 +2,9 @@ package org.fichtenbauer.gameoflife.game;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static org.fichtenbauer.gameoflife.game.CellState.*;
 
@@ -22,23 +24,33 @@ public class GameOfLife {
     }
 
     public static Map<Cell, CellState> nextGeneration(Map<Cell, CellState> universe) {
-        Map<Cell, CellState> nextGenerationUniverse = new HashMap<>();
+        return universe.entrySet()
+                .stream()
+                .flatMap(e -> cellMatrix(e, universe))
+                .map(e -> nextState(e, universe))
+                .filter(e -> e.getValue() == ALIVE )
+                .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1));
+    }
 
-        for (Map.Entry<Cell, CellState> entry : universe.entrySet()) {
-            Cell baseCell = entry.getKey();
-            for (int x = baseCell.getX() - 1; x <= baseCell.getX() + 1; x++) {
-                for (int y = baseCell.getY() - 1; y <= baseCell.getY() + 1; y++) {
-                    Cell localCell = Cell.of(x, y);
-                    CellState localCellState = universe.get(localCell) != null ? ALIVE : DEAD;
-                    CellState nextState = nextState(localCellState, numberOfLiveNeighborsOf(universe, localCell));
-                    if (nextState == ALIVE) {
-                        nextGenerationUniverse.put(localCell, nextState);
-                    }
-                }
+    public static Stream<Map.Entry<Cell, CellState>> cellMatrix(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
+        Map<Cell, CellState> matrix = new HashMap<>();
+        Cell baseCell = e.getKey();
+        for (int x = baseCell.getX() - 1; x <= baseCell.getX() + 1; x++) {
+            for (int y = baseCell.getY() - 1; y <= baseCell.getY() + 1; y++) {
+                Cell localCell = Cell.of(x, y);
+                CellState localCellState = universe.get(localCell) != null ? ALIVE : DEAD;
+                matrix.put(localCell, localCellState);
             }
         }
+        return matrix.entrySet().stream();
+    }
 
-        return nextGenerationUniverse;
+    public static Map.Entry<Cell, CellState> nextState(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
+        Cell currCell =  e.getKey();
+        CellState currState = e.getValue();
+        CellState nextState = nextState(currState, numberOfLiveNeighborsOf(universe, currCell));
+        e.setValue(nextState);
+        return e;
     }
 
     private static boolean isAliveAt(Map<Cell, CellState> universe, Cell cell) {

@@ -1,6 +1,5 @@
 package org.fichtenbauer.gameoflife.game;
 
-import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
@@ -11,9 +10,7 @@ import java.util.stream.Collectors;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.fichtenbauer.gameoflife.game.CellState.ALIVE;
 import static org.fichtenbauer.gameoflife.game.CellState.DEAD;
-import static org.fichtenbauer.gameoflife.game.GameOfLife.nextGeneration;
-import static org.fichtenbauer.gameoflife.game.GameOfLife.nextState;
-import static org.fichtenbauer.gameoflife.game.GameOfLife.numberOfLiveNeighborsOf;
+import static org.fichtenbauer.gameoflife.game.GameOfLife.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameOfLifeTest {
