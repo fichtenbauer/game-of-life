@@ -26,13 +26,18 @@ public class GameOfLife {
     public static Map<Cell, CellState> nextGeneration(Map<Cell, CellState> universe) {
         return universe.entrySet()
                 .stream()
-                .flatMap(e -> cellMatrix(e, universe))
-                .map(e -> nextState(e, universe))
+                .flatMap(e -> expandToCellMatrix(e, universe))
+                .map(e -> incrementCellState(e, universe))
                 .filter(e -> e.getValue() == ALIVE )
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1));
     }
 
-    public static Stream<Map.Entry<Cell, CellState>> cellMatrix(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
+    /**
+     * This method creates a 3 x 3 cell matrix around the given cell.
+     * I could not find an easy way to do this with pure functions,
+     * so I kept the nested for loops.
+     */
+    public static Stream<Map.Entry<Cell, CellState>> expandToCellMatrix(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
         Map<Cell, CellState> matrix = new HashMap<>();
         Cell baseCell = e.getKey();
         for (int x = baseCell.getX() - 1; x <= baseCell.getX() + 1; x++) {
@@ -45,7 +50,7 @@ public class GameOfLife {
         return matrix.entrySet().stream();
     }
 
-    public static Map.Entry<Cell, CellState> nextState(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
+    public static Map.Entry<Cell, CellState> incrementCellState(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
         Cell currCell =  e.getKey();
         CellState currState = e.getValue();
         CellState nextState = nextState(currState, numberOfLiveNeighborsOf(universe, currCell));
