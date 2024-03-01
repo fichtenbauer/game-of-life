@@ -1,6 +1,5 @@
 package org.fichtenbauer.gameoflife.game;
 
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -15,8 +14,8 @@ public class GameOfLife {
     }
 
     public static int numberOfLiveNeighborsOf(Map<Cell, CellState> universe, Cell cell) {
-        int count = (int) IntStream.rangeClosed(cell.getX() - 1, cell.getX() + 1)
-                .flatMap(x -> IntStream.rangeClosed(cell.getY() - 1, cell.getY() + 1)
+        int count = (int) IntStream.rangeClosed(cell.x() - 1, cell.x() + 1)
+                .flatMap(x -> IntStream.rangeClosed(cell.y() - 1, cell.y() + 1)
                 .filter(y -> isAliveAt(universe, Cell.of(x, y))))
                 .count();
 
@@ -34,8 +33,8 @@ public class GameOfLife {
 
     public static Stream<Map.Entry<Cell, CellState>> expandToCellMatrix(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
         Cell baseCell = e.getKey();
-        Map<Cell, CellState> matrix = Stream.iterate(baseCell.getY() -1, n -> n <= baseCell.getY() + 1 , n -> n + 1)
-                .flatMap(y -> IntStream.rangeClosed(baseCell.getX() - 1, baseCell.getX() + 1)
+        Map<Cell, CellState> matrix = Stream.iterate(baseCell.y() -1, n -> n <= baseCell.y() + 1 , n -> n + 1)
+                .flatMap(y -> IntStream.rangeClosed(baseCell.x() - 1, baseCell.x() + 1)
                 .mapToObj(x -> Cell.of(x, y)))
                 .collect(Collectors.toMap(c -> c, c -> universe.get(c) != null ? ALIVE : DEAD));
         return matrix.entrySet().stream();
