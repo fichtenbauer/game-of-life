@@ -4,6 +4,7 @@ This exercise was given as a hands-on example in the online course "Software Des
 by [Dr. Venkat Subramaniam][03], [O'Reilly Media][01]. 
 
 
+
 ## Rules
 
 The universe of the Game of Life is an infinite, two-dimensional orthogonal grid of square cells, 
@@ -21,6 +22,8 @@ by applying the above rules simultaneously to every cell in the seed, live or de
 and deaths occur simultaneously, and the discrete moment at which this happens is sometimes 
 called a tick. Each generation is a pure function of the preceding one. The rules continue 
 to be applied repeatedly to create further generations.
+
+![Game of Life: Glider Gun](doc/Gospers_glider_gun.gif)
 
 Retrieved from: [Wikipedia: Conway's Game of Life][02]
 
