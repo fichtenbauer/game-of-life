@@ -100,8 +100,8 @@ public class GameOfLifeTest {
     @Test
     void numberOfLiveNeighborsIs1ForALiveCell() {
         Map<Cell, CellState> universe = createUniverse(
-                Cell.of(5, 6),
-                Cell.of(5, 5)
+                Cell.of(5, 5),
+                Cell.of(5, 6)
         );
 
         assertThat(numberOfLiveNeighborsOf(universe, Cell.of(5, 5)))
@@ -123,8 +123,8 @@ public class GameOfLifeTest {
     @Test
     void numberOfLiveNeighborsIs2() {
         Map<Cell, CellState> universe = createUniverse(
-                Cell.of(5, 6),
-                Cell.of(4, 5)
+                Cell.of(4, 5),
+                Cell.of(5, 6)
         );
 
         assertThat(numberOfLiveNeighborsOf(universe, Cell.of(5, 5)))
@@ -146,8 +146,8 @@ public class GameOfLifeTest {
     @Test
     void numberOfLiveNeighborsIs3() {
         Map<Cell, CellState> universe = createUniverse(
-                Cell.of(5, 6),
                 Cell.of(4, 5),
+                Cell.of(5, 6),
                 Cell.of(6, 4)
         );
 
@@ -170,9 +170,9 @@ public class GameOfLifeTest {
     @Test
     void numberOfLiveNeighborsIs2WithAFarAwayNeighbor() {
         Map<Cell, CellState> universe = createUniverse(
-                Cell.of(5, 6),
+                Cell.of(1, 4),
                 Cell.of(4, 5),
-                Cell.of(1, 4)
+                Cell.of(5, 6)
         );
 
         assertThat(numberOfLiveNeighborsOf(universe, Cell.of(5, 5)))
@@ -218,8 +218,8 @@ public class GameOfLifeTest {
     @Test
     void numberOfLiveNeibhborsForTopRightCell() {
         Map<Cell, CellState> universe = createUniverse(
-                Cell.of(0, 9),
                 Cell.of(0, 8),
+                Cell.of(0, 9),
                 Cell.of(1, 8)
         );
 
@@ -242,10 +242,10 @@ public class GameOfLifeTest {
     @Test
     void numberOfLiveNeibhborsForBottomLeftCell() {
         Map<Cell, CellState> universe = createUniverse(
-                Cell.of(9, 1),
                 Cell.of(0, 8),
-                Cell.of(1, 8)
-        );
+                Cell.of(1, 8),
+                Cell.of(9, 1)
+                );
 
         assertThat(numberOfLiveNeighborsOf(universe, Cell.of(9, 0)))
                 .isEqualTo(1);
@@ -266,10 +266,10 @@ public class GameOfLifeTest {
     @Test
     void numberOfLiveNeibhborsForBottomRightCell() {
         Map<Cell, CellState> universe = createUniverse(
-                Cell.of(9, 9),
+                Cell.of(1, 8),
                 Cell.of(9, 8),
-                Cell.of(1, 8)
-        );
+                Cell.of(9, 9)
+                );
 
         assertThat(numberOfLiveNeighborsOf(universe, Cell.of(9, 9)))
                 .isEqualTo(1);
@@ -374,8 +374,8 @@ public class GameOfLifeTest {
         Map<Cell, CellState> expected = createUniverse(
                 Cell.of(1, 1),
                 Cell.of(1, 2),
-                Cell.of(2, 2),
-                Cell.of(2, 1)
+                Cell.of(2, 1),
+                Cell.of(2, 2)
         );
 
         assertThat(nextGeneration(universe))
@@ -402,16 +402,16 @@ public class GameOfLifeTest {
         Map<Cell, CellState> universe = createUniverse(
                 Cell.of(1,1),
                 Cell.of(1,2),
-                Cell.of(2,2),
-                Cell.of(2,1)
+                Cell.of(2,1),
+                Cell.of(2,2)
         );
 
         Map<Cell, CellState> expected = createUniverse(
                 Cell.of(1, 1),
                 Cell.of(1, 2),
-                Cell.of(2, 2),
-                Cell.of(2, 1)
-        );
+                Cell.of(2, 1),
+                Cell.of(2, 2)
+                );
 
         assertThat(nextGeneration(universe))
                 .usingRecursiveComparison()
@@ -484,8 +484,7 @@ public class GameOfLifeTest {
 
     private Map<Cell, CellState> createUniverse(Cell... livePositions) {
         return Arrays.stream(livePositions)
-                .collect(Collectors
-                .toMap(c -> c, c -> ALIVE));
+                .collect(Collectors.toMap(c -> c, c -> ALIVE));
     }
 
 }
