@@ -10,7 +10,11 @@ import static org.fichtenbauer.gameoflife.game.CellState.*;
 public class GameOfLife {
 
     public static CellState nextState(CellState cellState, int numberOfLiveNeighbors) {
-        return numberOfLiveNeighbors == 3 || cellState == ALIVE && numberOfLiveNeighbors == 2 ? ALIVE : DEAD;
+        return switch (numberOfLiveNeighbors) {
+            case 2 -> cellState;
+            case 3 -> ALIVE;
+            default -> DEAD;
+        };
     }
 
     public static int numberOfLiveNeighborsOf(Map<Cell, CellState> universe, Cell cell) {
