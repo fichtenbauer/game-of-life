@@ -1,7 +1,7 @@
 # Game of Life
 
 This exercise was given as a hands-on example in the online course "Software Design with Unit Tests"
-by [Dr. Venkat Subramaniam](03), [O'Reilly Media](01). 
+by [Dr. Venkat Subramaniam][03], [O'Reilly Media][01]. 
 
 
 ## Rules
@@ -22,7 +22,7 @@ and deaths occur simultaneously, and the discrete moment at which this happens i
 called a tick. Each generation is a pure function of the preceding one. The rules continue 
 to be applied repeatedly to create further generations.
 
-Retrieved from: [Wikipedia: Conway's Game of Life](02)
+Retrieved from: [Wikipedia: Conway's Game of Life][02]
 
 ## System Requirements
 * Java 17 or higher
