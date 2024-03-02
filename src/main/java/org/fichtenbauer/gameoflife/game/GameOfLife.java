@@ -1,5 +1,6 @@
 package org.fichtenbauer.gameoflife.game;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -35,7 +36,7 @@ public class GameOfLife {
                 .collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue, (e1, e2) -> e1));
     }
 
-    public static Stream<Map.Entry<Cell, CellState>> expandToCellMatrix(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
+    private static Stream<Map.Entry<Cell, CellState>> expandToCellMatrix(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
         Cell baseCell = e.getKey();
         Map<Cell, CellState> matrix = Stream.iterate(baseCell.y() -1, n -> n <= baseCell.y() + 1 , n -> n + 1)
                 .flatMap(y -> IntStream.rangeClosed(baseCell.x() - 1, baseCell.x() + 1)
@@ -44,7 +45,7 @@ public class GameOfLife {
         return matrix.entrySet().stream();
     }
 
-    public static Map.Entry<Cell, CellState> incrementCellState(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
+    private static Map.Entry<Cell, CellState> incrementCellState(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
         Cell currCell =  e.getKey();
         CellState currState = e.getValue();
         CellState nextState = nextState(currState, numberOfLiveNeighborsOf(universe, currCell));
@@ -54,6 +55,11 @@ public class GameOfLife {
 
     private static boolean isAliveAt(Map<Cell, CellState> universe, Cell cell) {
         return universe.get(cell) != null && universe.get(cell) == ALIVE;
+    }
+
+    public static Map<Cell, CellState> createUniverse(Cell... livePositions) {
+        return Arrays.stream(livePositions)
+                .collect(Collectors.toMap(c -> c, c -> ALIVE));
     }
 
 }

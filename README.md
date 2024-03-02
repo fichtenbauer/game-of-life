@@ -1,4 +1,4 @@
-# Game of Life
+# Conway's Game of Life
 
 This exercise was given as a hands-on example in the online course "Software Design with Unit Tests"
 by [Dr. Venkat Subramaniam][03], [O'Reilly Media][01]. 
@@ -23,9 +23,22 @@ and deaths occur simultaneously, and the discrete moment at which this happens i
 called a tick. Each generation is a pure function of the preceding one. The rules continue 
 to be applied repeatedly to create further generations.
 
-![Game of Life: Glider Gun](doc/Gospers_glider_gun.gif)
+Reference: [Wikipedia: Conway's Game of Life][02]
 
-Retrieved from: [Wikipedia: Conway's Game of Life][02]
+## Grphical User Interface
+
+This implementation comes with a graphical user interface.
+
+![Game of Life: Glider Gun](doc/screen-shot.png)
+
+The buttons are:
+
+* **Run** starts the game
+* **Stop** stops the game
+* **Step** moves the game one step forward 
+* **Blinker**, **Toad**, **Beacon**, **Pulsar**, **Pentadecathlon** and **Random** 
+  load prepared shapes to initialise a new game
+  
 
 ## System Requirements
 * Java 17 or higher
@@ -34,7 +47,7 @@ Retrieved from: [Wikipedia: Conway's Game of Life][02]
 ## Executing program
 
 ```
-mvn clean test
+mvn clean javafx:run
 ```
 
 ## Branches

@@ -2,10 +2,7 @@ package org.fichtenbauer.gameoflife.game;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
 import java.util.Map;
-import java.util.stream.Collectors;
-
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.fichtenbauer.gameoflife.game.CellState.ALIVE;
@@ -482,9 +479,6 @@ public class GameOfLifeTest {
                 .isEqualTo(expected);
     }
 
-    private Map<Cell, CellState> createUniverse(Cell... livePositions) {
-        return Arrays.stream(livePositions)
-                .collect(Collectors.toMap(c -> c, c -> ALIVE));
-    }
+
 
 }
