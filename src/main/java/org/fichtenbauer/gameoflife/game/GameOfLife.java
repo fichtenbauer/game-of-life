@@ -38,7 +38,8 @@ public class GameOfLife {
 
     private static Stream<Map.Entry<Cell, CellState>> expandToCellMatrix(Map.Entry<Cell, CellState> e, Map<Cell, CellState> universe) {
         Cell baseCell = e.getKey();
-        Map<Cell, CellState> matrix = Stream.iterate(baseCell.y() -1, n -> n <= baseCell.y() + 1 , n -> n + 1)
+        Map<Cell, CellState> matrix = IntStream.rangeClosed(baseCell.y() -1, baseCell.y() + 1)
+                .boxed()
                 .flatMap(y -> IntStream.rangeClosed(baseCell.x() - 1, baseCell.x() + 1)
                 .mapToObj(x -> Cell.of(x, y)))
                 .collect(Collectors.toMap(c -> c, c -> universe.get(c) != null ? ALIVE : DEAD));

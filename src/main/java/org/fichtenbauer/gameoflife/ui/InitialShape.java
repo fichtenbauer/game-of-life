@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 import static org.fichtenbauer.gameoflife.game.CellState.ALIVE;
 import static org.fichtenbauer.gameoflife.game.GameOfLife.createUniverse;
@@ -55,9 +54,12 @@ public class InitialShape {
                     Cell.of(9, 12), Cell.of(4, 13), Cell.of(8, 13),
                     Cell.of(5, 14), Cell.of(6, 14), Cell.of(7, 14)
             );
-            case "random" -> Stream
-                    .iterate(0, n -> n < rows, n -> n + 1)
-                    .flatMap(y -> IntStream.rangeClosed(0, columns - 1)
+            case "pattern" -> createUniverse(
+                    Cell.of(5, 5)
+            );
+            case "random" -> IntStream.rangeClosed(5, rows - 6)
+                    .boxed()
+                    .flatMap(y -> IntStream.rangeClosed(5, columns - 6)
                     .mapToObj(x -> Cell.of(x, y)))
                     .filter(e -> Math.random() < 0.5)
                     .collect(Collectors.toMap(c -> c, c -> ALIVE));
